@@ -1,23 +1,16 @@
-from tkinter.ttk import Frame
 from tkinter import Label
+from .baseframe import BaseFrame
 from ..component.hoveredbutton import HoveredButton
 
 
-class MainMenuFrame(Frame):
+class MainMenuFrame(BaseFrame):
 
-    def __init__(self, controller=None, **kw):
-        super().__init__(master=controller, **kw)
-        self.__controller = controller
+    def __init__(self, controller, **kw):
+        super().__init__(controller, "Main Menu", **kw)
+        self.setup_widgets()
 
-        self.__update_title()
-        self.__setup_widgets()
-
-    def __update_title(self):
-        self.__controller.wm_title(
-            f"{self.__controller.APPLICATION_NAME} - Main Menu")
-
-    def __setup_widgets(self):
-        greet = Label(self.__controller, text="Welcome Back!",
+    def setup_widgets(self):
+        greet = Label(self.controller, text="Welcome Back!",
                       font=("Montserrat", 22, "bold"))
 
         # Setup default properties for each HoveredButton widget
@@ -34,20 +27,20 @@ class MainMenuFrame(Frame):
         btn_props["bg"] = "#03719C"
         btn_props["activebackground"] = "#005D82"
         btn_newt = HoveredButton(
-            self.__controller, text="New Transaction", **btn_props)
+            self.controller, text="New Transaction", **btn_props)
 
         btn_props["bg"] = "#0F9B8E"
         btn_props["activebackground"] = "#0A7C72"
         btn_tlog = HoveredButton(
-            self.__controller, text="Transactions Log", **btn_props)
+            self.controller, text="Transactions Log", **btn_props)
 
         btn_props["bg"] = "#343837"
         btn_props["activebackground"] = "#1E2120"
         btn_exit = HoveredButton(
-            self.__controller, text="Transactions Log", **btn_props)
+            self.controller, text="Transactions Log", **btn_props)
 
         version = Label(
-            self.__controller, text=f"{self.__controller.APPLICATION_NAME} v{self.__controller.APPLICATION_VERSION_STRING}", font=("Montserrat", 12))
+            self.controller, text=f"{self.controller.APPLICATION_NAME} v{self.controller.APPLICATION_VERSION_STRING}", font=("Montserrat", 12))
 
         # Default properties for position placement
         props = {
