@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractmethod
-from tkinter.ttk import Frame
+from tkinter import Frame
 
 
 class BaseFrame(Frame, metaclass=ABCMeta):

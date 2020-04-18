@@ -10,8 +10,8 @@ class MainMenuFrame(BaseFrame):
         self.setup_widgets()
 
     def setup_widgets(self):
-        greet = Label(self.controller, text="Welcome Back!",
-                      font=("Montserrat", 22, "bold"))
+        greet = Label(self, text="Welcome Back!",
+                      font=("Montserrat", 22, "bold"), bg=self["background"])
 
         # Setup default properties for each HoveredButton widget
         # bg -> default background
@@ -26,21 +26,26 @@ class MainMenuFrame(BaseFrame):
 
         btn_props["bg"] = "#03719C"
         btn_props["activebackground"] = "#005D82"
-        btn_newt = HoveredButton(
-            self.controller, text="New Transaction", **btn_props)
+        btn_props["command"] = lambda: self.controller.switch_frame(
+            "newtransaction")
+        btn_newt = HoveredButton(self, text="New Transaction", **btn_props)
 
         btn_props["bg"] = "#0F9B8E"
         btn_props["activebackground"] = "#0A7C72"
+        btn_props["command"] = lambda: self.controller.switch_frame(
+            "transactionslog")
         btn_tlog = HoveredButton(
-            self.controller, text="Transactions Log", **btn_props)
+            self, text="Transactions Log", **btn_props)
 
         btn_props["bg"] = "#343837"
         btn_props["activebackground"] = "#1E2120"
+        btn_props["command"] = lambda: self.controller.destroy()
         btn_exit = HoveredButton(
-            self.controller, text="Transactions Log", **btn_props)
+            self, text="Exit", **btn_props)
 
         version = Label(
-            self.controller, text=f"{self.controller.APPLICATION_NAME} v{self.controller.APPLICATION_VERSION_STRING}", font=("Montserrat", 12))
+            self, text=f"{self.controller.APPLICATION_NAME} v{self.controller.APPLICATION_VERSION_STRING}", font=("Montserrat", 12),
+            bg=self["background"])
 
         # Default properties for position placement
         props = {
