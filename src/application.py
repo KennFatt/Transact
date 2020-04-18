@@ -9,7 +9,7 @@ from .frames import TransactionsLogFrame
 class Application(Tk):
 
     APPLICATION_NAME = "Transact"
-    APPLICATION_VERSION_STRING = "1.0-dev"
+    APPLICATION_VERSION_STRING = "1.0"
 
     def __init__(self):
         super().__init__()
