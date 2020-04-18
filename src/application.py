@@ -1,3 +1,4 @@
+import datetime
 from tkinter import Tk
 from tkinter import BOTH
 from .frames import MainMenuFrame
@@ -20,6 +21,13 @@ class Application(Tk):
             "newtransaction": NewTransactionFrame,
             "transactionslog": TransactionsLogFrame
         }
+        self.products = {
+            "topi": 40_000,
+            "kaos": 100_000,
+            "celana": 70_000,
+            "sepatu": 65_000
+        }
+        self.transactions = {}
 
         # Setup window
         self.__setup_window()
@@ -47,3 +55,16 @@ class Application(Tk):
         # Pack new frame to fill both X and Y axis
         # And allow its to expand all the free spaces on main window.
         self.__current_frame.pack(fill=BOTH, expand=True)
+
+    def add_new_transaction(self, type, quantity):
+        per_pcs = self.products[type]
+        tid_int = len(self.transactions) + 1
+        tid = f"#ID{tid_int}"
+        date_t = datetime.datetime.now()
+
+        self.transactions[tid] = {
+            "date": f"{date_t.day}/{date_t.month}/{date_t.year}",
+            "type": type,
+            "quantity": quantity,
+            "total": per_pcs * quantity
+        }
