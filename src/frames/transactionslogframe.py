@@ -105,7 +105,7 @@ class TransactionsLogFrame(BaseFrame):
         # Back Button
         btn_back.place(anchor="n", width=450, height=50, x=240, y=570)
 
-    def on_item_selected(self):
+    def on_item_selected(self, *args):
         # Prevent an error occurred when list is empty
         if len(self.controller.transactions) == 0:
             return

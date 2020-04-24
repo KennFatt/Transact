@@ -10,9 +10,9 @@ class HoveredButton(Button):
         self.bind("<Enter>", self.on_enter)
         self.bind("<Leave>", self.on_leave)
 
-    def on_enter(self):
+    def on_enter(self, *args):
         self["activeforeground"] = self.__default_fg
         self["background"] = self["activebackground"]
 
-    def on_leave(self):
+    def on_leave(self, *args):
         self["background"] = self.__default_bg
