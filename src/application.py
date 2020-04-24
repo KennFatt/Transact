@@ -56,15 +56,15 @@ class Application(Tk):
         # And allow its to expand all the free spaces on main window.
         self.__current_frame.pack(fill=BOTH, expand=True)
 
-    def add_new_transaction(self, type, quantity):
-        per_pcs = self.products[type]
+    def add_new_transaction(self, item_type, quantity):
+        per_pcs = self.products[item_type]
         tid_int = len(self.transactions) + 1
         tid = f"#ID{tid_int}"
         date_t = datetime.datetime.now()
 
         self.transactions[tid] = {
             "date": f"{date_t.day}/{date_t.month}/{date_t.year}",
-            "type": type,
+            "type": item_type,
             "quantity": quantity,
             "total": per_pcs * quantity
         }

@@ -81,14 +81,13 @@ class NewTransactionFrame(BaseFrame):
 
     def on_confirm_button(self):
         # Type
-        type: str = self.__it_combobox.get()
-        if len(type) == 0:
+        item_type: str = self.__it_combobox.get()
+        if len(item_type) == 0:
             showinfo("Invalid Input", "Please select item type!")
             return
 
         # Quantity
         raw_q: str = self.__q_entry.get()
-        q = 0
         if raw_q.isnumeric():
             q = int(raw_q)
         else:
@@ -100,5 +99,5 @@ class NewTransactionFrame(BaseFrame):
             return
 
         showinfo("Transaction Succeed", "New transaction has been added!")
-        self.controller.add_new_transaction(type, q)
+        self.controller.add_new_transaction(item_type, q)
         self.controller.switch_frame("mainmenu")

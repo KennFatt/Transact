@@ -16,18 +16,10 @@ class MainMenuFrame(BaseFrame):
         # Setup default properties for each HoveredButton widget
         # bg -> default background
         # activebackground -> When button hovered
-        btn_props = {
-            "fg": "#fff",
-            "bg": "#000",
-            "activebackground": "#111",
-            "command": lambda: print("Button clicked!"),
-            "font": ("Montserrat", 14, "bold")
-        }
+        btn_props = dict(fg="#fff", bg="#03719C", activebackground="#005D82",
+                         command=lambda: self.controller.switch_frame(
+                             "newtransaction"), font=("Montserrat", 14, "bold"))
 
-        btn_props["bg"] = "#03719C"
-        btn_props["activebackground"] = "#005D82"
-        btn_props["command"] = lambda: self.controller.switch_frame(
-            "newtransaction")
         btn_newt = HoveredButton(self, text="New Transaction", **btn_props)
 
         btn_props["bg"] = "#0F9B8E"
@@ -44,7 +36,8 @@ class MainMenuFrame(BaseFrame):
             self, text="Exit", **btn_props)
 
         version = Label(
-            self, text=f"{self.controller.APPLICATION_NAME} v{self.controller.APPLICATION_VERSION_STRING}", font=("Montserrat", 12),
+            self, text=f"{self.controller.APPLICATION_NAME} v{self.controller.APPLICATION_VERSION_STRING}",
+            font=("Montserrat", 12),
             bg=self["background"])
 
         # Default properties for position placement

@@ -105,8 +105,8 @@ class TransactionsLogFrame(BaseFrame):
         # Back Button
         btn_back.place(anchor="n", width=450, height=50, x=240, y=570)
 
-    def on_item_selected(self, *args):
-        # Prevent an error occured when list is empty
+    def on_item_selected(self):
+        # Prevent an error occurred when list is empty
         if len(self.controller.transactions) == 0:
             return
 
@@ -114,13 +114,13 @@ class TransactionsLogFrame(BaseFrame):
             self.__log_listbox.curselection()[0]]
 
         date = self.controller.transactions[tid]["date"]
-        type = self.controller.transactions[tid]["type"]
+        item_type = self.controller.transactions[tid]["type"]
         quantity = self.controller.transactions[tid]["quantity"]
         total = self.controller.transactions[tid]["total"]
 
         self.__t_id_var.set(f"Transaction ID\t: {tid}")
         self.__t_date_var.set(f"Transaction Date\t: {date}")
-        self.__t_type_var.set(f"Product Type\t: {type}")
+        self.__t_type_var.set(f"Product Type\t: {item_type}")
         self.__t_quantity_var.set(f"Product Quantity\t: {quantity}")
         self.__t_payment_var.set(f"Total Payment\t: IDR {total}")
         pass
